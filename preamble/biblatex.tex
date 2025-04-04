@@ -1,17 +1,23 @@
 \usepackage[
-  style=nature,%
-  %style=science, article-title=true,%
+  style=authoryear,%
+  %style=science, style=nature, article-title=true,%
   natbib=true,%
   clearlang=true,%
   backend=biber,%
+  maxnames=2,         % Show up to 2 authors before using "et al."
+  minnames=1,         % Use "et al." when more than 2 authors
+  uniquelist=false,   % Avoid adding extra author names when unnecessary
 ]{biblatex}
+
+
+\setlength\bibitemsep{0.5em}  % Adjust to increase spacing
 
 \ExecuteBibliographyOptions{%
   %--- Backend --- --- ---
   bibwarn=true, %
   bibencoding=auto, % (ascii, inputenc, <encoding>)
   %--- Sorting --- --- ---
-  sorting=none, % Sort by name, title, year.
+  sorting=nyt, 
   % other options: 
   % nty        Sort by name, title, year.
   % nyt        Sort by name, year, title.
@@ -24,7 +30,7 @@
   % debug      Sort by entry key. This is intended for debugging only.
   %
   sortcase=true,
-  sortlos=los, % (bib, los) The sorting order of the list of shorthands
+  %sortlos=los, % (bib, los) The sorting order of the list of shorthands
   sortcites=true, % do/do not sort citations according to bib	
   %--- Dates --- --- ---
   date=comp,  % (short, long, terse, comp, iso8601)
@@ -35,13 +41,13 @@
   datezeros=true, %
   dateabbrev=true, %
   %--- General Options --- --- ---
-  maxnames=3,
+  maxnames=2,
   minnames=1,
   maxbibnames=100, % do not abbreviate names in bibliography
   %	autocite= % (plain, inline, footnote, superscript) 
   autopunct=true,
   language=auto,
-  babel=none, % (none, hyphen, other, other*)
+  autolang=other, % (none, hyphen, other, other*)
   block=none, % (none, space, par, nbpar, ragged)
   notetype=foot+end, % (foot+end, footonly, endonly)
   hyperref=true, % (true, false, auto)
@@ -67,6 +73,7 @@
   doi=false,%
   eprint=false,%	
 }%	
+
 
 % Suppress all date fields except the year
 \AtEveryBibitem{%

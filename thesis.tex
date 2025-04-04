@@ -2,7 +2,7 @@
 \documentclass[%
     twoside, openright, titlepage, numbers=noenddot,%
     cleardoublepage=empty,%
-    abstractoff,%
+    abstract=false,%
     BCOR=5.5mm, paper=a5, fontsize=10pt,% A5 soft cover
     %BCOR=5.5mm, paper=17cm:24cm, fontsize=10pt,% 17 cm x 24 cm
     %BCOR=5mm, paper=15.59cm:23.39cm, fontsize=10pt,% Royal soft cover
@@ -14,9 +14,12 @@
 \input{preamble/general}
 \usepackage[final]{pdfpages}
 
+\usepackage{siunitx}
+\usepackage[version=4]{mhchem}
+
 % Bibliography
 \addbibresource[label=ownpubs]{ownpubs.bib}
-\addbibresource{bibliography.bib}
+\addbibresource{bib_thesis_zotero.bib}
 \addbibresource{misc.bib}
 
 \begin{document}
@@ -26,49 +29,58 @@
 \pagenumbering{roman}
 \pagestyle{scrplain}
 
+
 %
 % Cover
 %
 % Uncomment and adapt these lines if you want to include a cover PDF.
 %
-\includepdf[pages={1,{}}]{cover/crop/cover_front.pdf}
-\cleardoublepage\setcounter{page}{1}
+% \includepdf[pages={1,{}}]{cover/crop/cover_front.pdf}
+% \cleardoublepage\setcounter{page}{1}
 
 %
 % Frontmatter
 %
 
-\include{frontbackmatter/dirtytitlepage}
+%\include{frontbackmatter/dirtytitlepage}
 \include{frontbackmatter/titlepage}
 \include{frontbackmatter/titleback}
-\cleardoublepage\include{frontbackmatter/dedication}
+%\cleardoublepage\include{frontbackmatter/dedication}
 \cleardoublepage\include{frontbackmatter/abstract}
 \cleardoublepage\include{frontbackmatter/acknowledgments}
 \pagestyle{scrheadings}
 \cleardoublepage\include{frontbackmatter/contents}
 
+\setlength{\parindent}{2em} % Adjust the indentation size
+
 %
 % Mainmatter
 %
 \cleardoublepage\pagenumbering{arabic}%
-\def\dir{chapters/introduction}
+\def\dir{chapters/01_introduction}
 \include{\dir/main}
 
 \cleardoublepage%
-\def\dir{chapters/sample-chapter}
+\def\dir{chapters/02_chap1}
 \include{\dir/main}
 
-% Include some blind text
-\Blinddocument
+\cleardoublepage%
+\def\dir{chapters/03_chap2}
+\include{\dir/main}
 
 \cleardoublepage%
-\def\dir{chapters/conclusion_outlook}
+\def\dir{chapters/04_chap3}
+\include{\dir/main}
+
+\cleardoublepage%
+\def\dir{chapters/05_conclusion_outlook}
 \include{\dir/main}
 
 \appendix
 \cleardoublepage%
-\def\dir{chapters/appendix}
-\include{\dir/main}
+\def\dir{chapters/06_appendix}
+\include{\dir/main1}
+\include{\dir/main2}
 
 \cleardoublepage\include{frontbackmatter/bibliography}
 

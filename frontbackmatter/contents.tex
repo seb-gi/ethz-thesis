@@ -1,86 +1,116 @@
 %*******************************************************
 % Table of Contents
 %*******************************************************
+
+% Dotted leaders for all levels
+\renewcommand{\cftchapdotsep}{\cftdotsep}
+\renewcommand{\cftsecdotsep}{\cftdotsep}
+\renewcommand{\cftsubsecdotsep}{\cftdotsep}
+\renewcommand{\cftsubsubsecdotsep}{\cftdotsep}
+
+% Set width for numbers to align text properly
+\renewcommand{\cftchapnumwidth}{3em}  
+\renewcommand{\cftsecnumwidth}{2.5em} 
+\renewcommand{\cftsubsecnumwidth}{3em} 
+\renewcommand{\cftsubsubsecnumwidth}{4em} 
+
+% Ensure page numbers are properly right-aligned with dotted leaders
+\renewcommand{\cftchapleader}{\hfill} % Dotted leaders and right-aligned page numbers
+\renewcommand{\cftsecleader}{\hfill} 
+\renewcommand{\cftsubsecleader}{\hfill}
+\renewcommand{\cftsubsubsecleader}{\hfill}
+
+% Right-align page numbers explicitly
+\renewcommand{\cftchapafterpnum}{\hspace{0pt}}
+\renewcommand{\cftsecafterpnum}{\hspace{0pt}}
+\renewcommand{\cftsubsecafterpnum}{\hspace{0pt}}
+\renewcommand{\cftsubsubsecafterpnum}{\hspace{0pt}}
+
 %\phantomsection
 \refstepcounter{dummy}
 \pdfbookmark[1]{\contentsname}{tableofcontents}
-\setcounter{tocdepth}{2} % <-- 2 includes up to subsections in the ToC
-\setcounter{secnumdepth}{3} % <-- 3 numbers up to subsubsections
+\setcounter{tocdepth}{2} % Includes up to subsections in the TOC
+\setcounter{secnumdepth}{3} % Numbers up to subsubsections
 \manualmark%
 \markboth{\spacedlowsmallcaps{\contentsname}}{\spacedlowsmallcaps{\contentsname}}
 \tableofcontents
 \automark[section]{chapter}
 \renewcommand{\chaptermark}[1]{\markboth{\spacedlowsmallcaps{#1}}{\spacedlowsmallcaps{#1}}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection\enspace\spacedlowsmallcaps{#1}}}
-%*******************************************************
-% List of Figures and of the Tables
-%*******************************************************
-\clearpage
 
-\begingroup
-    \let\clearpage\relax
-    \let\cleardoublepage\relax
-    \let\cleardoublepage\relax
-    %*******************************************************
-    % List of Figures
-    %*******************************************************
-    %\phantomsection
-    % \refstepcounter{dummy}
-    %\addcontentsline{toc}{chapter}{\listfigurename}
-    % \pdfbookmark[1]{\listfigurename}{lof}
-    % \listoffigures
 
-    % \vspace{8ex}
 
-    %*******************************************************
-    % List of Tables
-    %*******************************************************
-    %\phantomsection
-    % \refstepcounter{dummy}
-    %\addcontentsline{toc}{chapter}{\listtablename}
-    % \pdfbookmark[1]{\listtablename}{lot}
-    % \listoftables
 
-    % \vspace{8ex}
-    % \newpage
 
-    %*******************************************************
-    % List of Listings
-    %*******************************************************
-      %\phantomsection
-    %\refstepcounter{dummy}
-    %\addcontentsline{toc}{chapter}{\lstlistlistingname}
-    %\pdfbookmark[1]{\lstlistlistingname}{lol}
-    %\lstlistoflistings%
+% %*******************************************************
+% % List of Figures and of the Tables
+% %*******************************************************
+% \clearpage
 
-    %\vspace{8ex}
+% \begingroup
+%     \let\clearpage\relax
+%     \let\cleardoublepage\relax
+%     \let\cleardoublepage\relax
+%     %*******************************************************
+%     % List of Figures
+%     %*******************************************************
+%     %\phantomsection
+%     % \refstepcounter{dummy}
+%     %\addcontentsline{toc}{chapter}{\listfigurename}
+%     % \pdfbookmark[1]{\listfigurename}{lof}
+%     % \listoffigures
 
-    % Notation
-    \refstepcounter{dummy}
-    \pdfbookmark[1]{Notation}{notation}
-    \markboth{\spacedlowsmallcaps{Notation}}{\spacedlowsmallcaps{Notation}}
-    \chapter*{Notation}
+%     % \vspace{8ex}
 
-    \section*{Frequently used symbols}%
-    \vskip -2em
-    \begin{tabularx}{\textwidth}{lX}
-      %\toprule%
-      %\tableheadline{Symbol} & \tableheadline{Meaning} \\
-      %\midrule%
-      $E$ & energy \\
-      $m$ & rest mass \\
-      $p$ & impulse \\
-      %\bottomrule
-    \end{tabularx}
+%     %*******************************************************
+%     % List of Tables
+%     %*******************************************************
+%     %\phantomsection
+%     % \refstepcounter{dummy}
+%     %\addcontentsline{toc}{chapter}{\listtablename}
+%     % \pdfbookmark[1]{\listtablename}{lot}
+%     % \listoftables
 
-    \section*{Physical constants}
-    \sisetup{separate-uncertainty=false}
-    \vskip -2em
-    \begin{tabularx}{\textwidth}{lX}
-$c$ & speed of light in vacuum, $c=\u{299792458}{\metre\per\second}$ \\
-    \end{tabularx}
-    \begin{flushright}
-    (CODATA 2014~\cite{codata})
-    \end{flushright}
-    \sisetup{separate-uncertainty=true}
-\endgroup
+%     % \vspace{8ex}
+%     % \newpage
+
+%     %*******************************************************
+%     % List of Listings
+%     %*******************************************************
+%       %\phantomsection
+%     %\refstepcounter{dummy}
+%     %\addcontentsline{toc}{chapter}{\lstlistlistingname}
+%     %\pdfbookmark[1]{\lstlistlistingname}{lol}
+%     %\lstlistoflistings%
+
+%     %\vspace{8ex}
+
+%     % Notation
+%     \refstepcounter{dummy}
+%     \pdfbookmark[1]{Notation}{notation}
+%     \markboth{\spacedlowsmallcaps{Notation}}{\spacedlowsmallcaps{Notation}}
+%     \chapter*{Notation}
+
+%     \section*{Frequently used symbols}%
+%     \vskip -2em
+%     \begin{tabularx}{\textwidth}{lX}
+%       %\toprule%
+%       %\tableheadline{Symbol} & \tableheadline{Meaning} \\
+%       %\midrule%
+%       $E$ & energy \\
+%       $m$ & rest mass \\
+%       $p$ & impulse \\
+%       %\bottomrule
+%     \end{tabularx}
+
+%     \section*{Physical constants}
+%     \sisetup{separate-uncertainty=false}
+%     \vskip -2em
+%     \begin{tabularx}{\textwidth}{lX}
+% $c$ & speed of light in vacuum, $c=\u{299792458}{\metre\per\second}$ \\
+%     \end{tabularx}
+%     \begin{flushright}
+%     (CODATA 2014~\cite{codata})
+%     \end{flushright}
+%     \sisetup{separate-uncertainty=true}
+% \endgroup

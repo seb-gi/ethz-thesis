@@ -12,12 +12,14 @@
   %listings,%
   %parts,%
   floatperchapter, pdfspacing,%
-  beramono,%
+  %beramono,%
   %minionprospacing,
   %subfig,%
   %eulermath,%
   a5paper,%
 }{classicthesis}
+
+\usepackage{ebgaramond}
 
 % Meta
 \input{preamble/meta}
@@ -51,6 +53,23 @@
 \let\origcite\cite%
 \def\cite#1{\unskip~\origcite{#1}}
 
+\usepackage{totcount} % Ensure the package is loaded
+
+% Initialize and register the counter
+\newtotcounter{dataset} 
+\regtotcounter{dataset} 
+
+% Define how dataset numbers should appear
+\renewcommand{\thedataset}{S\arabic{dataset}}
+
+% Define the dataset command
+\newcommand{\dataset}[2]{%
+  \refstepcounter{dataset}% Increment counter
+  \noindent\textbf{SI Dataset \thedataset\space(\nolinkurl{#1})}\par #2\par\bigskip
+}
+
+\usepackage{adjustbox}
+
 % Math stuff
 \usepackage{amsmath}
 %\usepackage{amssymb}
@@ -65,9 +84,20 @@
 \newcommand{\myfloatalign}{\centering}
 \usepackage{floatrow}
 \usepackage{caption}
-\captionsetup{format=hang,font=small,labelfont={sc},margin=5pt}
+\captionsetup{
+    format=plain, % Standard paragraph format
+    font=small, % Adjust font size (small is standard)
+    labelfont=bf, % Bold label
+    singlelinecheck=false, % Always apply the justification
+    margin=5pt % Adds space between text and caption frame
+}
 \usepackage{subcaption}
 \captionsetup[sub]{margin=0pt,font=small,labelfont={rm}}
+
+\usepackage{chngcntr}  % Allows counter resets
+%\counterwithin{figure}{section}  % Reset figure numbering per section
+\renewcommand{\thefigure}{\thesection.\arabic{figure}} % Section-based figure numbering
+
 
 % Blind text
 \usepackage{blindtext}
@@ -100,9 +130,12 @@
 }
 
 % Graphics
+\usepackage{copyrightbox}
 \usepackage{graphicx}
-\usepackage{rotating}
-\usepackage{tikz}
+\usepackage{float}
+\usepackage{rotating}  
+\usepackage{dcolumn}       % <--- added
+\usepackage{tablefootnote} % moved here (must be after `rotating`)\usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
 \usetikzlibrary{shapes.geometric}
@@ -129,6 +162,7 @@
 \providecommand{\subfigureautorefname}{\figureautorefname}%
 \usepackage{cleveref}
 
+
 % Acronyms
 \PassOptionsToPackage{printonlyused}{acronym}
 \usepackage{acronym}
@@ -149,7 +183,7 @@
 \areaset[current]{\textwidth}{1.618034\textwidth}
 
 % Page numbers in plain style (chapter titles)
-\clearscrplain
+\clearplainofpairofpagestyles
 \ofoot[\pagemark]{}
 % Adjust distance to footer (default is too large)
 \setlength{\footskip}{19pt}
@@ -189,14 +223,24 @@
 %\newfont{\chapterNumber}{MinionPro-Regular-lf-t1 scaled 5500}
 
 % SI units
-\usepackage{siunitx}
-\sisetup{
-  separate-uncertainty,
-  repeatunits=false,
-  detect-family,
-  unit-mode=text,
-}
+\usepackage[detect-all,separate-uncertainty = true,multi-part-units=single]{siunitx}
+
+% \sisetup{
+%   separate-uncertainty,
+%   repeatunits=false,
+%   detect-family,
+%   unit-mode=text,
+% }
 \DeclareSIUnit\au{a.u.}
+\DeclareSIUnit\mbgl{m\ b.g.l.}
+\DeclareSIUnit\masl{m\ a.s.l.}
+\DeclareSIUnit\copies{copies}
+\DeclareSIUnit\molar{M}
+\DeclareSIUnit\TU{TU}
+\DeclareSIUnit\ccstp{ccstp}
+\DeclareSIUnit\bar{bar}
+\DeclareSIUnit\year{yr}
+\DeclareSIUnit\permille{\text{\textperthousand}}
 \let\u=\SI%
 
 % Product type codes
@@ -252,3 +296,10 @@
 \clubpenalty = 10000
 \widowpenalty = 10000
 %\displaywidowpenalty = 10000
+
+\usepackage{tocloft}
+
+\usepackage{afterpage}   % Ensure figures appear on the next page
+\usepackage{placeins}    % Control float placement
+
+\usepackage{multirow}
